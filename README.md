@@ -51,11 +51,31 @@
     ```
     Snippet ini dilakukan untuk menambahkan routing ke aplikasi `main` yang akan menjalankan fungsi `show_main` pada `main/views.py` ketika subdirektori main diakses
 
-- [ ] Melakukan *deployment* ke Adaptable terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.
-- [ ] Membuat sebuah `README.md` yang berisi tautan menuju aplikasi Adaptable yang sudah di-*deploy*, serta jawaban dari beberapa pertanyaan berikut.
+- [x] Melakukan *deployment* ke Adaptable terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.
+
+    Repo sudah dideploy dengan command `python manage.py migrate && gunicorn NFTshop.wsgi`
+    dan dapat diakses pada `nftshop.adaptable.app/main/`
+
+- [x] Membuat sebuah `README.md` yang berisi tautan menuju aplikasi Adaptable yang sudah di-*deploy*, serta jawaban dari beberapa pertanyaan berikut.
     - Jelaskan bagaimana cara kamu mengimplementasikan *checklist* di atas secara *step-by-step* (bukan hanya sekadar mengikuti tutorial).
     - Buatlah bagan yang berisi *request client* ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara `urls.py`, `views.py`, `models.py`, dan berkas `html`.
     - Jelaskan mengapa kita menggunakan ***virtual environment***? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan ***virtual environment***?
     - Jelaskan apakah itu MVC, MVT, MVVM dan perbedaan dari ketiganya.
 
-Perhatikan bahwa kamu harus mengerjakan tugas ini menggunakan repositori yang **berbeda** dengan tutorial, sehingga pastikan kamu **membuat repositori baru** untuk tugas ini.
+Jawaban:
+
+1. Step by step sudah dijelaskan di atas.
+
+2. 
+
+3. Tujuan utama digunakannya ***Virtual Environment*** adalah untuk mengisolasi lingkungan Python masing2 proyek. Hal ini dilakukan untuk menghindari konflik antar proyek yang menggunakan versi Python atau versi library yang berbeda.
+
+    Misalkan proyek A membutuhkan dependency library X versi 1.0, sedangkan proyek B membutuhkan dependency library X versi 2.0. 
+    Kita harus membuat virtual environment untuk setidaknya salah satu proyek tersebut agar tidak ada konflik dependency apabila kita ingin menjalankan kedua proyek tersebut secara berbarengan mengingat python [Tidak bisa memiliki 2 versi library yang sama dalam satu environment](https://stackoverflow.com/questions/48332046/does-pip-python-support-multiple-versions-of-the-same-package). 
+
+    Selain itu dengan penggunaan virtual environment, proyek kita akan lebih mudah direplikasi di mesin lain karena kita hanya perlu mengirimkan file `requirements.txt` yang berisi daftar dependency yang dibutuhkan oleh proyek tersebut. Hal ini akan sangat berguna ketika kita berkolaborasi dalam sebuah proyek, seperti ketika tugas kelompok nanti.
+
+    Kita tetap bisa membuat aplikasi Django tanpa virtual environment, namun hal ini tidak disarankan karena hal ini akan mempersulit kolaborasi serta dapat mengakibatkan konflik dependency seperti yang dicontohkan dengan hal yang dijelaskan diatas.
+
+4. 
+- MVC, MVT, MVVM adalah pola desain arsitektur perangkat lunak. Perbedaannya:

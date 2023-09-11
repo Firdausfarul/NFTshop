@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from random import randint
 from requests import get
+
 # Create your views here.
 def show_main(request):
     context = reqnft()
