@@ -20,5 +20,7 @@ def reqnft():
         'amount': randint(1, 100),
         'description': f"A very beautiful country named {country} that located on {continent}",
         'img': img_url,
-        'price': randint(4, 159)
+        'price': randint(4, 159),
+        'siswa' : "Muhammad Fachrudin Firdaus",
+        'kelas' : 'PBP E'
     }
