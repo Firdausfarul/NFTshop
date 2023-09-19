@@ -158,7 +158,7 @@ Perbedaan utama antara ketiganya terletak pada bagaimana mereka memisahkan tugas
 
 # 4.Step By Step
 
-[x] Membuat input form untuk menambahkan objek model pada app sebelumnya.
+- [x] Membuat input form untuk menambahkan objek model pada app sebelumnya.
 
 1. Menginisialisasi form pada `main/forms.py` dengan format seperti tutorial
 
@@ -172,11 +172,11 @@ Perbedaan utama antara ketiganya terletak pada bagaimana mereka memisahkan tugas
 
 6. Menambahkan akses ke `create_product` pada `main.html` dengan button seperti tutorial.
 
-[x]Tambahkan 5 fungsi views untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID.
+- [x]Tambahkan 5 fungsi views untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID.
 
 - Dilakukan dengan mengambil data dari database sesuai dengan ID yang diberikan atau semua data jika ID tidak diberikan lalu menserialisasinya ke format yang sesuai dan mengembalikannya ke User. Untuk HTML data akan dirender sesuai dengan template html pada `main/templates`.
 
-[x]Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.
+- [x]Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.
 
 - Menghubungkan path dengan fungsi yang relevan pada `main/urls.py` dengan format seperti tutorial.
 
