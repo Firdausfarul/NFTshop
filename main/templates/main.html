@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>NFT Shop Gacor</title>
+{% extends 'base.html' %}
+
+{% block content %}
+<title>NFT Shop Gacor</title>
     <style>
         /* Style your artifact display as you see fit, dear Traveler. */
         body {
@@ -17,20 +17,73 @@
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
-        
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(auto-fill, minmax(300px, auto));
+    }
+
+        .item-container {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        }
+
+        .item-image {
+        /* Display the image as a block element */
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+        }
+        .nft-button {
+        background-color: #000;
+        color: #fff;
+        padding: 10px 20px;
+        border: 1px solid #000;
+        border-radius: 4px;
+        font-size: 32px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        }
     </style>
 </head>
 <body>
     <div class="artifact-info">
         <h3>Nama : {{siswa}}</h3>
         <h3>Kelas : {{kelas}}</h3>
-        <h1>NFTshop </h1>
-        <img src="{{img}}" height="300px" width="300px" alt="valued at 10000000 USD">
-        <p>Name: {{name}}</p>
-        <p>Amount for sale: {{amount}}</p>
-        <p>Description: {{description}}</p>
-        <p>Price: {{price}} ETH</p>
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Click here to buy</a>
+        <h1>NFTshop - OpenSeabat </h1>
+        <h2>{{itemlen}} NFTs listed as Today</h2>
+        <a href="{% url 'main:create_product' %}">
+            <button class="nft-button">
+                List Your NFT
+            </button>
+        </a>
+    <div class="grid-container">
+        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+    
+        {% for item in items %}
+                <div class="item-container">
+                    <img src="{{ item.img }}" class="item-image">
+                    <h3>Name : {{ item.name }}</h3>
+                    <p>Price : {{ item.price }} ETH</p>
+                    <p>Description : {{ item.description }}</p>
+                    <p>Amount: {{ item.amount }}</p>
+                    <a href="https://www.youtube.com/watch?v=6kguaGI7aZg">
+                        <button class="nft-button">
+                            Buy
+                        </button>
+                    </a>
+                </div>
+        {% endfor %}
     </div>
+    <br />
+    
+</div>
 </body>
-</html>
+
+{% endblock content %}

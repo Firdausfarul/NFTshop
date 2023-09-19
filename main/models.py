@@ -6,3 +6,4 @@ class Item(models.Model):
     description = models.TextField()
     img = models.TextField()
     price = models.IntegerField()
+

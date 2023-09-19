@@ -1,4 +1,4 @@
-
+# Tugas 2
 
 ## 1. Step by step pengerjaan
 
@@ -125,3 +125,6 @@ MVC, MVT, dan MVVM adalah tiga pola desain arsitektur yang digunakan dalam penge
 
 Perbedaan utama antara ketiganya terletak pada bagaimana mereka memisahkan tugas dalam aplikasi.
  MVC memisahkan aplikasi menjadi logika bisnis (Model), tampilan pengguna (View), dan pengendali yang menghubungkan dua yang pertama (Controller). MVT mirip MVC, tapi tugas merespon ke request dan logika bisnis dihandle oleh View, Template hanya sebagai kerangka untuk menampilkan data. Sedangkan MVVM menggunakan ViewModel sebagai penghubung antara Model dan View, ViewModel memungkinkan perubahan otomatis antara Model dan View, cocok untuk aplikasi web yang dinamis.
+
+ ---
+ # Tugas 3
