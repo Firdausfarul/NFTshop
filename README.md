@@ -128,3 +128,75 @@ Perbedaan utama antara ketiganya terletak pada bagaimana mereka memisahkan tugas
 
  ---
  # Tugas 3
+# 1. Apa perbedaan antara form POST dan form GET dalam Django?
+
+- GET mempunyai limit payload size yang relatif kecil dibanding POST
+
+- GET umumnya digunakan untuk mengambil data dari server, dan tidak berefek/mengubah database. POST umumny digunakan untuk mengirim data ke server, dan berefek/mengubah database.
+
+- GET dapat di-bookmark karena payload berada di URL itu sendiri, sehingga dapat diakses kembali dengan mudah, sehingga tidak cocok untuk mengirim data sensitif. POST tidak dapat di-bookmark, data berada di payload http request sehingga lebih cocok untuk mengirim data sensitif seperti password.
+
+# 2. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
+- HTML bertujuan utama untuk menampilkan data sehingga, sedangkan XML dan JSON bertujuan utama untuk mengirim/menyimpan data.
+
+- HTML lebih berorientasi kepada User Interface sedangkan XML dan JSON lebih berorientasi kepada data.
+
+- JSON mempunyai native support di Javascript, sedangkan XML tidak. Sehingga membuatnya relatif lebih ringan dan cepat untuk diproses pada browser.
+
+- JSON memiliki struktur key-value yang sederhana, sehingga lebih mudah dibaca manusia dibanding XML yang berstruktur tree yang lebih kompleks.
+
+
+
+# 3. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
+- JSON mempunyai native support di Javascript, sehingga parsingnya lebih ringan dan cepat untuk diproses pada browser dibanding XML.
+
+- Struktur key-value yang sederhana membuatnya lebih mudah dibaca dan di-edit manusia.
+
+- Ukuran JSON yang relatif kecil membuatnya lebih efisien untuk ditransfer melalui jaringan.
+
+- JSON lebih simple dan fleksibel dibanding XML.
+
+# 4.Step By Step
+
+[x] Membuat input form untuk menambahkan objek model pada app sebelumnya.
+
+1. Menginisialisasi form pada `main/forms.py` dengan format seperti tutorial
+
+2. Menambahkan templat `base.html` pada `/templates` folder dengan format seperti tutorial serta menambahkan path template tersebut di `settings.py` pada folder `NFTshop`.
+
+3. Menambahkan fungsi `create_product` yang menghandle form pada `main/views.py` dengan format seperti tutorial
+
+4. Menambahkan template `create_product.html` di `main/templates` sesuai tutorial.
+
+5. Menambahkan path untuk `create_product` pada `main/urls.py` sesuai tutorial.
+
+6. Menambahkan akses ke `create_product` pada `main.html` dengan button seperti tutorial.
+
+[x]Tambahkan 5 fungsi views untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID.
+
+- Dilakukan dengan mengambil data dari database sesuai dengan ID yang diberikan atau semua data jika ID tidak diberikan lalu menserialisasinya ke format yang sesuai dan mengembalikannya ke User. Untuk HTML data akan dirender sesuai dengan template html pada `main/templates`.
+
+[x]Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.
+
+- Menghubungkan path dengan fungsi yang relevan pada `main/urls.py` dengan format seperti tutorial.
+
+# 5. Postman SS
+**1. HTML**
+
+![Postman](https://raw.githubusercontent.com/Firdausfarul/Intft_stellar/main/image_2023-09-20_052047083.png)
+
+**2. XML**
+
+![Postman](https://raw.githubusercontent.com/Firdausfarul/Intft_stellar/main/image_2023-09-20_052002792.png)
+
+**3. XML by ID**
+
+![Postman](https://raw.githubusercontent.com/Firdausfarul/Intft_stellar/main/image_2023-09-20_052020305.png)
+
+**4. JSON**
+
+![Postman](https://raw.githubusercontent.com/Firdausfarul/Intft_stellar/main/image_2023-09-20_051944319.png)
+
+**5. JSON by ID**
+
+![Postman](https://raw.githubusercontent.com/Firdausfarul/Intft_stellar/main/image_2023-09-20_051907377.png)
