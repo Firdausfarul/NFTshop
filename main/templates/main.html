@@ -49,18 +49,48 @@
         font-size: 32px;
         cursor: pointer;
         transition: all 0.2s ease-in-out;
+        margin-top: 10px; 
         }
+        .amount-button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    border: none; /* Remove the border */
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px; 
+    display: inline-block;
+    transition: background-color 0.2s ease-in-out;
+}
+
+a.inline-link {
+    display: inline; /* or inline-block, depending on your needs */
+    /* Add other styling as needed */
+    text-decoration: none; /* Remove underlines from the link */
+    color: #007bff; /* Set link color */
+    /* Add more styles here as desired */
+}
+
+
     </style>
 </head>
 <body>
     <div class="artifact-info">
         <h3>Nama : {{siswa}}</h3>
         <h3>Kelas : {{kelas}}</h3>
+        <h3>Welcome  to NFTShop, {{username}}</h3>
         <h1>NFTshop - OpenSeabat </h1>
         <h2>{{itemlen}} NFTs listed as Today</h2>
+        <h5>Sesi terakhir login: {{ last_login }}</h5>
         <a href="{% url 'main:create_product' %}">
             <button class="nft-button">
                 List Your NFT
+            </button>
+        </a>
+        <a href="{% url 'main:logout' %}">
+            <button class="nft-button">
+                Logout
             </button>
         </a>
     <div class="grid-container">
@@ -72,7 +102,27 @@
                     <h3>Name : {{ item.name }}</h3>
                     <p>Price : {{ item.price }} ETH</p>
                     <p>Description : {{ item.description }}</p>
-                    <p>Amount: {{ item.amount }}</p>
+                    <p>Amount : {{ item.amount }}</p>
+                    <p>Listed By : {{item.user.username}}</p> 
+                {% if item.user.username == username %}
+                    <h4><b>Listed By You</b></h4>
+                    <a href="{% url 'main:increase_amount' item.id %}" class="inline-link">
+                        <button class = "amount-button">
+                            ⬆️ Increase Amount
+                        </button>
+                    </a>
+                    <a href="{% url 'main:decrease_amount' item.id %}" class="inline-link">
+                        <button class="amount-button">
+                            ⬇️ Decrease Amount
+                        </button>
+                    </a>       
+                    <a href="{% url 'main:delete_product' item.id %}">
+                        <button class="nft-button">
+                            Delete Product
+                        </button>
+                    </a>
+                    
+                {% endif %}
                     <a href="https://www.youtube.com/watch?v=6kguaGI7aZg">
                         <button class="nft-button">
                             Buy

@@ -200,3 +200,48 @@ Perbedaan utama antara ketiganya terletak pada bagaimana mereka memisahkan tugas
 **5. JSON by ID**
 
 ![Postman](https://raw.githubusercontent.com/Firdausfarul/Intft_stellar/main/image_2023-09-20_051907377.png)
+
+---
+
+# Tugas 4
+
+1. **Apa itu Django `UserCreationForm`, dan jelaskan apa kelebihan dan kekurangannya?**
+    
+    Django UserCreationForm adalah class/form yang sudah disediakan Django untuk mempermudah proses pembuatan akun baru/registrasi.  Kelebihannya adalah lebih praktis, developer tidak perlu membuat sistem registrasi dari awal, cukup mengimport UserCreationForm dari Django dan menggunakannya. Kekurangannya adalah UserCreationForm kurang fleksibel, kita tidak bisa mengubah tampilan form dengan bebas, hanya bisa dengan bawaan django.
+
+2.  **Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?**
+
+    Autentikasi dalam konteks Django adalah proses verifikasi identitas pengguna, seperti proses login. Sementara otorisasi adalah proses menentukan apa yang bisa dilakukan pengguna setelah mereka terautentikasi, seperti akses ke halaman tertentu atau melakukan tindakan tertentu. Contohnya pengguna hanya bisa menghapus item yang dibuatnya sendiri, tidak bisa menghapus item yang dibuat orang lain. Keduanya penting untuk memastikan bahwa hanya pengguna yang berwenang yang dapat mengakses dan berinteraksi dengan aplikasi web.
+
+3. **Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?**
+
+    Cookies dalam konteks aplikasi web adalah data yang disimpan di browser pengguna oleh situs web. Django menggunakan cookies untuk mengelola data sesi pengguna, seperti informasi login, siapa user yang saat ini login. Cookies juga memungkinkan Django untuk 'mengingat' pilihan/informasi mengenai pengguna dan menyediakan pengalaman yang lebih dipersonalisasi.
+
+4. **Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?**
+
+    Penggunaan cookies secara umum dianggap aman, tetapi ada beberapa risiko yang harus diwaspadai. Misalnya, cookies dapat disalahgunakan oleh pihak ketiga untuk melacak aktivitas online pengguna tanpa sepengetahuan mereka. Selain itu, jika ada kemungkinan cookies pengguna dicuri melalui Cross Site Scripting(XSS). Apabila yang dicuri adalah cookies yang berisi informasi login/session maka perettas bisa berpura-pura menjadi user yang cookiesnya dicuri. Oleh karena itu, penting untuk selalu menggunakan enkripsi dan *best practices* keamanan lainnya saat bekerja dengan cookies.
+
+5.  **Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step**
+
+- [x] Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar.
+
+    - membuat fungsi `register`, `login_user`, `logout_user` di `main/views.py` dengan memanfaatkan framework Django (Seperti di Tutorial)
+    - Menyambungkan fungsi-fungsi tersebut ke path yang relevan di `main/urls.py` 
+
+- [x] Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.
+
+    - ![Gambar](https://github.com/Firdausfarul/Intft_stellar/blob/main/image_2023-09-26_124033288.png?raw=true)
+    - ![Gambar](https://github.com/Firdausfarul/Intft_stellar/blob/main/image_2023-09-26_125159110.png?raw=true)
+
+- [x] Menghubungkan model Item dengan User.
+
+    - Menambahkan atribut User pada model Item dengan tipe ForeignKey untuk menghubungkan Item dengan User.
+    - Make migration dan migrate untuk mengaplikasikan perubahan pada database.
+
+- [x] Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.
+
+    - Menambahkan cookies yang berisi last login
+    - Menambahkan cookies tersebut ke context
+    - Menambahkan template untuk mendisplay last login tersebut
+    - Menambahkan User ke context untuk mendisplay username
+    - Menambahkan template untuk mendisplay username 
