@@ -3,7 +3,6 @@
 {% block content %}
 <title>NFT Shop Gacor</title>
     <style>
-        /* Style your artifact display as you see fit, dear Traveler. */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f0f0f0;
@@ -55,7 +54,7 @@
     background-color: #000;
     color: #fff;
     padding: 10px 20px;
-    border: none; /* Remove the border */
+    border: none; 
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
@@ -65,11 +64,13 @@
 }
 
 a.inline-link {
-    display: inline; /* or inline-block, depending on your needs */
-    /* Add other styling as needed */
-    text-decoration: none; /* Remove underlines from the link */
-    color: #007bff; /* Set link color */
-    /* Add more styles here as desired */
+    display: inline; 
+    text-decoration: none;
+    color: #007bff; 
+}
+.last-row {
+    background-color: #FFD700;
+    color: #000; 
 }
 
 
@@ -97,7 +98,8 @@ a.inline-link {
         {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
     
         {% for item in items %}
-                <div class="item-container">
+            {% with forloop.counter as counter %}
+                <div class="item-container {% if counter > last_row %}last-row{% endif %}">
                     <img src="{{ item.img }}" class="item-image">
                     <h3>Name : {{ item.name }}</h3>
                     <p>Price : {{ item.price }} ETH</p>
@@ -129,6 +131,7 @@ a.inline-link {
                         </button>
                     </a>
                 </div>
+            {% endwith %}
         {% endfor %}
     </div>
     <br />

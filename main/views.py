@@ -97,7 +97,11 @@ def create_product(request):
 def show_main(request):
     Items = Item.objects.all()
     itemlen = len(Items)
-    print(Items[0].id)
+    if(itemlen%3==0):
+        row = itemlen - 3
+    else:
+        row = itemlen - (itemlen %3)
+
     context = {
         'siswa' : "Muhammad Fachrudin Firdaus",
         'kelas' : 'PBP E',
@@ -105,6 +109,7 @@ def show_main(request):
         'itemlen' : itemlen,
         'items' : Items,
         'last_login': request.COOKIES['last_login'],
+        'last_row' : row,
     }
     return render(request, "main.html", context)
     

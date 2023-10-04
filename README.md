@@ -245,3 +245,116 @@ Perbedaan utama antara ketiganya terletak pada bagaimana mereka memisahkan tugas
     - Menambahkan template untuk mendisplay last login tersebut
     - Menambahkan User ke context untuk mendisplay username
     - Menambahkan template untuk mendisplay username 
+
+---
+# Tugas 5
+
+## 1. Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
+
+1. **Type Selector:** 
+
+    Memilih semua elemen berdasarkan tipe elemennya (misalnya, p, div).
+
+    Tepat digunakan ketika ingin menerapkan gaya yang sama ke semua elemen jenis yang sama.
+
+2. **Class Selector:**
+    
+    Memilih elemen berdasarkan kelasnya (misalnya, .my-class).
+
+    Tepat digunakan ketika ingin menerapkan gaya ke sekelompok elemen yang berbeda, tetapi membutuhkan gaya yang sama.
+
+3. **ID Selector:**
+    
+    Memilih elemen berdasarkan ID-nya (misalnya, #my-id).
+
+   Tepat digunakan ketika perlu menerapkan gaya ke elemen yang spesifik dan unik.
+
+4. **Attribute Selector:**
+
+    Memilih elemen berdasarkan atributnya (misalnya, [type="text"]).
+
+    Tepat digunakan ketika ingin memilih elemen berdasarkan atributnya, bukan tipe, ID, atau kelas.
+
+5. **Pseudo-class Selector:**
+    Memilih elemen berdasarkan keadaannya (misalnya, :hover, :active).
+
+    Tepat digunakan ketika ingin menerapkan gaya berdasarkan interaksi pengguna atau keadaan elemen.
+
+6. **Pseudo-element Selector:** 
+    
+    Memilih bagian tertentu dari elemen (misalnya, ::before, ::after).
+
+    Tepat digunakan ketika perlu memodifikasi atau menambah konten ke elemen tanpa mengubah HTML.
+
+
+## 2. Jelaskan HTML5 Tag yang kamu ketahui.
+
+### Struktur Dasar
+1. `<html>`: Tag pembuka untuk dokumen HTML.
+2. `<head>`: Berisi metadata dan informasi lain seperti judul dan tautan ke CSS atau file JS.
+3. `<title>`: Menentukan judul halaman web yang akan muncul pada tab browser.
+4. `<body>`: Berisi konten yang akan ditampilkan di browser.
+
+### Berhubungan dengan teks
+1. `<h1>, <h2>, ..., <h6>`: Digunakan untuk heading atau judul dengan berbagai tingkat.
+2. `<p>`: Digunakan untuk paragraf teks.
+3. `<strong>`: Digunakan untuk nge-bold teks.
+
+### Tautan dan Gambar
+1. `<a>`: Digunakan untuk membuat tautan.
+2. `<img>`: Digunakan untuk menyisipkan gambar.
+
+### List
+1. `<ul>`: Digunakan untuk membuat daftar tidak berurutan. (yang titik titik)
+2. `<ol>`: Digunakan untuk membuat daftar berurutan. (yang pake angka)
+
+### Form
+1. `<form>`: Digunakan untuk membuat form.
+2. `<input>`: Digunakan untuk elemen input seperti teks, radio button, dan lain-lain.
+3. `<button>`: Digunakan untuk membuat tombol.
+
+### Layout
+1. `<div>`: Digunakan untuk pembagian bagian/membuat bagian baru pada halaman web.
+2. `<header>`, `<footer>`, `<main>`, `<section>`, `<article>`, `<aside>`: Digunakan untuk layout semantik, mempermudah pembacaan struktur halaman oleh mesin seperti web crawler dan manusia.
+
+## 3. Jelaskan perbedaan antara margin dan padding.
+![marginpadding](https://cdn-images-1.medium.com/v2/resize:fit:1200/1*xOn6MsNhUcju7Did367ssQ.jpeg)
+
+- Margin adalah Jarak antara elemen dengan elemen lainnya di sekitarnya.
+
+- Padding adalah Jarak antara konten elemen dengan batas elemennya.
+
+## 4. Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+
+- Bootstrap lebih berorientasi pada komponen, sudah menyediakan banyak elemen UI **siap pakai**.
+
+- Tailwind lebih berfokus pada utilitas, memungkinkan untuk membangun desain dari awal dengan lebih cepat. 
+
+Gunakan bootstrap ketika :
+- Butuh banyak komponen UI yang sudah siap pakai.
+
+- Ketika kita lebih suka mendeklarasikan gaya dalam HTML menggunakan kelas yang lebih semantik.
+
+- Butuh waktu pengembangan yang lebih cepat, karena bootstrap sudah menyediakan banyak komponen UI yang siap pakai dan lebih sederhana. 
+
+Gunakan Tailwind ketika :
+
+- Ingin kontrol lebih atas desain.
+
+- Ingin mengkustomisasi desain karena tailwind lebih fleksibel.
+
+- Ketika kita Lebih suka mendeklarasikan gaya langsung di elemen/in-line, tanpa perlu menulis CSS ekstra.
+
+## 5. Step by Step
+
+- [x]  Memberikan warna yang berbeda (teks atau background) pada baris terakhir dari item pada inventori anda menggunakan CSS.
+
+    Menandai indeks item keberapa yang ada di row akhir / diberi warna berbeda dan mengirimnya melalui context (berada di `views.py` karena di template django sulit untuk menghitungnya), lalu pada template kita beri percabangan / if untuk menambahkan class `last-row` pada item di row akhir. (if menggunakan context yang dikirim untuk menentukan item keberapa yang diberi warna berbeda)
+
+- [x] Kustomisasi halaman daftar inventori menjadi lebih berwarna maupun menggunakan apporach lain seperti menggunakan Card
+
+    Membuat div baru untuk semua detail `Item` dan styling div tersebut menggunakan css yang ada di class `item-container`. Semua item nanti akan ditampilkan dalam div baru yaitu `grid-container` untuk menampilkan item dalam bentuk grid dengan lebar 3.
+
+- [x] Kustomisasi halaman login, register, dan tambah inventori semenarik mungkin.
+
+    Menggunakan CSS untuk styling sebagus mungkin. Menyatukan beberapa item ke div baru dan memberi border ke div tersebut agar batas dari elemen terlihat jelas. Selain itu saya juga mengganti dan mengadjust warna dan ukuran beberapa elemen agar lebih bagus dipandang. Saya juga mencoba mengaplikasikan styling pseudo-class hover pada button agar tampilan button berubah sedikit ketika user menghover mousenya ke button. 
