@@ -358,3 +358,66 @@ Gunakan Tailwind ketika :
 - [x] Kustomisasi halaman login, register, dan tambah inventori semenarik mungkin.
 
     Menggunakan CSS untuk styling sebagus mungkin. Menyatukan beberapa item ke div baru dan memberi border ke div tersebut agar batas dari elemen terlihat jelas. Selain itu saya juga mengganti dan mengadjust warna dan ukuran beberapa elemen agar lebih bagus dipandang. Saya juga mencoba mengaplikasikan styling pseudo-class hover pada button agar tampilan button berubah sedikit ketika user menghover mousenya ke button. 
+
+---
+# Tugas 6
+
+1. Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
+
+- Synchronous: Semua operasi dieksekusi satu per satu secara berurutan. satu operasi harus selesai dulu sebelum operasi selanjutnya dimulai.
+
+- Asynchronous: Suatu operasi bisa dijalankan tanpa menunggu operasi sebelumnya selesai, sehingga beberapa operasi bisa dilakukan sekaligus.
+
+2. Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.
+
+    Event driven programming adalah paradigma dimana alur program dikendalikan oleh peristiwa/event seperti input pengguna, tindakan sistem, atau program lain. Dalam konteks JavaScript dan AJAX, ini berarti bahwa kode kita akan merespons event tertentu (seperti klik button) untuk melakukan tugas seperti memanggil API atau memperbarui DOM. 
+
+    Contoh :
+    ketika kita mengeklik tombol `List Your NFT` maka akan muncul modal yang berisi form untuk menambahkan item baru dan menambahkan item tersebut ke database.
+
+3. Jelaskan penerapan asynchronous programming pada AJAX.
+
+    Sesuai dengan namanya AJAX (Asynchronous JavaScript and XML) menggunakan asynchronous programming. Ketika Anda membuat panggilan AJAX, browser tidak menunggu data tapi langsung mengeksekusi perintah selanjutnya. Sebagai gantinya, sebuah callback function akan digunakan untuk menangani data ketika data tersebut akhirnya diterima, sehingga kode selanjutnya akan berjalan tanpa gangguan.
+
+4. Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
+
+    Fetch API: Native JavaScript, lebih ringan daripada jQuery(karena native). Lebih mudah diintegrasikan dengan teknologi front-end modern seperti React atau Angular.
+
+    jQuery: Menggunakan library, AJAX lebih mudah digunakan untuk pemula, tetapi karena jQuery adalah library eksternal, bisa menambah beban pada proyek.
+
+    Fetch API lebih baik karena lebih ringan (karena native) dan lebih mudah diintegrasikan dengan teknologi front-end modern. Sehingga mending menggunakan fetch API, kecuali memang kita masih kesulitan dengan fetch API dan lebih nyaman menggunakan jQuery serta ketika project kita tidak perlu efisiensi yang terlalu bagus.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+ - [x] Ubahlah kode cards data item agar dapat mendukung AJAX GET.
+    
+    Menambahkan fungsi untuk mendapatkan json list item di `views.py` lalu menambahkan fungsi `refreshItem()` untuk mengambil data item dari server dan mengubah isi dari `grid-container` dengan data yang didapat.
+
+ - [x] Lakukan pengambilan task menggunakan AJAX GET.
+
+
+ - [x] Buatlah sebuah tombol yang membuka sebuah modal dengan form untuk menambahkan item.
+
+    Sudah, tombol diimplementasikan sesuai tutorial
+
+ - [x] Buatlah fungsi view baru untuk menambahkan item baru ke dalam basis data.
+
+    sudah dengan fungsi `create_product_ajax`, seperti di tutorial
+
+ - [x] Buatlah path /create-ajax/ yang mengarah ke fungsi view yang baru kamu buat.
+
+    sudah, seperti di tutorial, sudah saya tambahkan di `main/urls.py`
+
+ - [x] Hubungkan form yang telah kamu buat di dalam modal kamu ke path /create-ajax/.
+
+    sudah, seperti di tutorial
+
+ - [x] Lakukan refresh pada halaman utama secara asinkronus untuk menampilkan daftar item terbaru tanpa reload halaman utama secara keseluruhan.
+
+    sudah dengan memanggil fungsi refreshItem pada fungsi callback dari POST API.
+
+ - [x] Melakukan perintah collectstatic.
+
+    sudah dilakukan
+
+tautan : http://muhammad-fachrudin-tugas.pbp.cs.ui.ac.id

@@ -12,7 +12,32 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages  
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponseNotFound
 import datetime
+
+def get_product_json(request):
+    product_item = Item.objects.all()
+    return HttpResponse(serializers.serialize('json', product_item))
+
+
+
+@csrf_exempt
+def add_product_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        price = request.POST.get("price")
+        description = request.POST.get("description")
+        img = request.POST.get("img")
+        amount = request.POST.get("amount")
+        user = request.user
+
+        new_product = Item(name=name, price=price, description=description, img=img, amount=amount, user=user)
+        new_product.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
 
 def delete_product(request, id):
     item = Item.objects.get(pk=id)
@@ -106,6 +131,7 @@ def show_main(request):
         'siswa' : "Muhammad Fachrudin Firdaus",
         'kelas' : 'PBP E',
         'username' : request.user.username,
+        'id' : request.user.id,
         'itemlen' : itemlen,
         'items' : Items,
         'last_login': request.COOKIES['last_login'],

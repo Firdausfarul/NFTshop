@@ -75,6 +75,7 @@ a.inline-link {
 
 
     </style>
+    
 </head>
 <body>
     <div class="artifact-info">
@@ -94,49 +95,125 @@ a.inline-link {
                 Logout
             </button>
         </a>
-    <div class="grid-container">
-        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
-    
-        {% for item in items %}
-            {% with forloop.counter as counter %}
-                <div class="item-container {% if counter > last_row %}last-row{% endif %}">
-                    <img src="{{ item.img }}" class="item-image">
-                    <h3>Name : {{ item.name }}</h3>
-                    <p>Price : {{ item.price }} ETH</p>
-                    <p>Description : {{ item.description }}</p>
-                    <p>Amount : {{ item.amount }}</p>
-                    <p>Listed By : {{item.user.username}}</p> 
-                {% if item.user.username == username %}
-                    <h4><b>Listed By You</b></h4>
-                    <a href="{% url 'main:increase_amount' item.id %}" class="inline-link">
-                        <button class = "amount-button">
-                            ⬆️ Increase Amount
-                        </button>
-                    </a>
-                    <a href="{% url 'main:decrease_amount' item.id %}" class="inline-link">
-                        <button class="amount-button">
-                            ⬇️ Decrease Amount
-                        </button>
-                    </a>       
-                    <a href="{% url 'main:delete_product' item.id %}">
-                        <button class="nft-button">
-                            Delete Product
-                        </button>
-                    </a>
-                    
-                {% endif %}
-                    <a href="https://www.youtube.com/watch?v=6kguaGI7aZg">
-                        <button class="nft-button">
-                            Buy
-                        </button>
-                    </a>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form" onsubmit="return false;">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="name" class="col-form-label">Name:</label>
+                                <input type="text" class="form-control" id="name" name="name"></input>
+                            </div>
+                            <div class="mb-3">
+                                <label for="price" class="col-form-label">Price:</label>
+                                <input type="number" class="form-control" id="price" name="price"></input>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="col-form-label">Description:</label>
+                                <textarea class="form-control" id="description" name="description"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="img" class="col-form-label">Img:</label>
+                                <textarea class="form-control" id="img" name="img"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="amount" class="col-form-label">Amount:</label>
+                                <textarea class="form-control" id="amount" name="amount"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+                    </div>
                 </div>
-            {% endwith %}
-        {% endfor %}
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
+    <div class="grid-container" id="container">
+        
     </div>
     <br />
     
 </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function refreshItem() {
+        $.ajax({
+            url: '/get_product_json/',  // Replace with your API URL
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                var itemHTML = '';
+
+                data.forEach(function(itemObj, index) {
+                    var item = itemObj.fields;
+                    var lastRowClass = '';  // You can set a condition for last-row class if you want
+
+                    itemHTML += `
+                        <div class="item-container ${lastRowClass}">
+                            <img src="${item.img.trim()}" class="item-image">
+                            <h3>Name : ${item.name}</h3>
+                            <p>Price : ${item.price} ETH</p>
+                            <p>Description : ${item.description}</p>
+                            <p>Amount : ${item.amount}</p>
+                            <p>Listed By : User ${item.user}</p>
+                    `;
+
+                    // Assuming you can compare item.user to a variable with the current user's ID
+                    if (item.user == "{{id}}") {
+                        itemHTML += `
+                            <h4><b>Listed By You</b></h4>
+                            <a href="/increase_amount/${itemObj.pk}" class="inline-link">
+                                <button class="amount-button">
+                                    ⬆️ Increase Amount
+                                </button>
+                            </a>
+                            <a href="/decrease_amount/${itemObj.pk}" class="inline-link">
+                                <button class="amount-button">
+                                    ⬇️ Decrease Amount
+                                </button>
+                            </a>       
+                            <a href="/delete_product/${itemObj.pk}" class="inline-link">
+                                <button class="nft-button">
+                                    Delete Product
+                                </button>
+                            </a>
+                        `;
+                    }
+
+                    itemHTML += `
+                            <button class="nft-button buy-product">
+                                Buy
+                            </button>
+                        </div>
+                    `;
+                });
+
+                document.getElementById("container").innerHTML = itemHTML;
+            }
+        });
+        
+    };
+    refreshItem();
+    function addProduct() {
+        
+        fetch("{% url 'main:add_product_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshItem)
+
+        document.getElementById("form").reset()
+        return false
+    }
+    document.getElementById("button_add").onclick = addProduct
+    
+</script>
 
 {% endblock content %}
