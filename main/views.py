@@ -16,10 +16,28 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseNotFound
 import datetime
 
+@csrf_exempt
 def get_product_json(request):
     product_item = Item.objects.all()
     return HttpResponse(serializers.serialize('json', product_item))
 
+@csrf_exempt
+def get_product_json_by_user_id(request, id):
+    product_item = Item.objects.filter(user=id)
+    return HttpResponse(serializers.serialize('json', product_item))
+
+@csrf_exempt
+def show_json_by_id(request, id):
+    data = Item.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def show_xml(request):
+    data = Item.objects.all()
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+@csrf_exempt
+def show_json(request):
+    data = Item.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 
 @csrf_exempt
@@ -90,19 +108,6 @@ def register(request):
 def show_xml_by_id(request, id):
     data = Item.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
-
-def show_json_by_id(request, id):
-    data = Item.objects.filter(pk=id)
-    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
-
-def show_xml(request):
-    data = Item.objects.all()
-    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
-
-def show_json(request):
-    data = Item.objects.all()
-    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
-
 
 
 def create_product(request):
