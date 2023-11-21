@@ -28,7 +28,9 @@ def create_product_flutter(request):
             user = request.user,
             name = data["name"],
             price = int(data["price"]),
-            description = data["description"]
+            description = data["description"],
+            img = data["img_url"],
+            amount = int(data["amount"])
         )
 
         new_product.save()
