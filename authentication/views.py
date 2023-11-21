@@ -4,12 +4,15 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.models import User
+import json
 
 @csrf_exempt
 def register(request):
     # Get user details from the request
-    username = request.POST['username']
-    password = request.POST['password']
+    data= json.loads(request.body)
+    
+    username = data['username']
+    password = data['password']
 
     # Check if the user already exists
     if User.objects.filter(username=username).exists():
